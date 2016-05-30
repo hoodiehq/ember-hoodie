@@ -8,7 +8,6 @@ const {
 
 export default Service.extend({
   init() {
-    console.log("called");
     this._super(...arguments);
     let hoodie = new Hoodie();
     set(this, 'hoodie', hoodie);
