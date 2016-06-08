@@ -39,7 +39,11 @@ module.exports = {
       srcDir: 'dist',
       destDir: '/'
     });
-    return mergeTrees([tree, hoodieTree]);
+    if (tree) {
+      return mergeTrees([tree, hoodieTree]);
+    } else {
+      return hoodieTree;
+    }
   },
 
   included(app) {
