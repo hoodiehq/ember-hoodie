@@ -36,7 +36,6 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
-    "http-proxy-middleware": "^0.15.2",
     "loader.js": "^4.0.1"
   },
   "keywords": [
@@ -45,6 +44,7 @@
   "dependencies": {
     "@hoodie/client": "^4.0.3",
     "hoodie": "^22.2.1",
+    "http-proxy-middleware": "^0.15.2",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "ember-cli-babel": "^5.1.6"
