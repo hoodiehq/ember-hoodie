@@ -1,26 +1,49 @@
 # Ember-hoodie
 
-This README outlines the details of collaborating on this Ember addon.
+This addon lets you use the awesome [hoodie](http://hood.ie) project
+seamlessly with Ember.js
 
-## Installation
+## Installing
+
+* `npm install -S ember-hoodie`
+
+## Usage
+
+```js
+// app/application/controller.js
+import Ember from 'ember';
+const {
+  Controller,
+  inject: { service }
+} = Ember;
+
+export default Controller.extend({
+  hoodieAccount: service('hoodie-account'),
+
+  actions: {
+    signIn(username, password) {
+      this.get('hoodieAccount').signIn({username, password});
+    },
+
+    signOut() {
+      this.get('hoodieAccount').signOut();
+    }
+  }
+});
+```
+
+```js
+// app/services/store.js
+import HoodieStore from 'ember-hoodie/services/store';
+
+export default HoodieStore;
+```
+
+Now, you can just use the store as you are used to! Whabam! Please help
+me fill out these docs a little better.
+
+## Hacking locally
 
 * `git clone` this repository
 * `npm install`
 * `bower install`
-
-## Running
-
-* `ember server`
-* Visit your app at http://localhost:4200.
-
-## Running Tests
-
-* `npm test` (Runs `ember try:testall` to test your addon against multiple Ember versions)
-* `ember test`
-* `ember test --server`
-
-## Building
-
-* `ember build`
-
-For more information on using ember-cli, visit [http://ember-cli.com/](http://ember-cli.com/).
