@@ -36,7 +36,7 @@ export default DS.Adapter.extend({
   // because hoodie/pouchdb uses UUIDs, we don't actually need
   // a scoped store for the delete.
   // Also, scoped remove is a little buggy
-  // https://github.com/hoodiehq/hoodie-store-client/issues/104
+  // https://github.com/hoodiehq/hoodie-store-client/issues/95
   deleteRecord(store, type, snapshot) {
     return this._next(() => {
       return this.get('hoodie.store').remove(snapshot.id);
@@ -67,6 +67,8 @@ export default DS.Adapter.extend({
   // This shouldn't be too bad of a workaround, as these operations are actually very quick.
   // They're not doing server round trips, they're only talking to an in-memory
   // pouchdb store.
+  //
+  // https://github.com/emberjs/data/issues/4262
   _next(f) {
     return this._queue = this._queue.catch(function(){}).then(f);
   }

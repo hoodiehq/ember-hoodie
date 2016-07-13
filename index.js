@@ -33,6 +33,9 @@ function hoodieMiddleware(config) {
 module.exports = {
   name: 'ember-hoodie',
 
+  // ember-browserify has the drawback that apps using ember-hoodie would be
+  // required to install ember-browserify as well.
+  // https://github.com/ef4/ember-browserify#using-ember-browserify-in-addons
   treeForVendor(tree) {
     var hoodiePackage = path.dirname(require.resolve('@hoodie/client'));
     var hoodieTree = new Funnel(this.treeGenerator(hoodiePackage), {
