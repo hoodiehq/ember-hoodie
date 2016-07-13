@@ -42,8 +42,8 @@
     "ember-addon"
   ],
   "dependencies": {
-    "@hoodie/client": "^4.0.3",
-    "hoodie": "^22.2.1",
+    "@hoodie/client": "^5.0.0",
+    "hoodie": "^23.1.1",
     "http-proxy-middleware": "^0.15.2",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
