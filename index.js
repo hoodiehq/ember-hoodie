@@ -47,7 +47,7 @@ module.exports = {
   },
 
   included(app) {
-    this._super(...arguments);
+    this._super.apply(this, arguments)
 
     app.import('vendor/hoodie.js');
   },
