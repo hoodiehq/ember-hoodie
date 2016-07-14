@@ -33,14 +33,19 @@ export default DS.Store.extend({
     };
 
     let remove = (obj) => {
-      let record = this.peekRecord(type, obj.id);
+      let record = this.peekRecord(obj.type, obj.id);
       if (!get(record, 'isDeleted')) {
         record.unloadRecord();
       }
     };
 
+    let reset = () => {
+      this.unloadAll();
+    };
+
     this.get('hoodie.store').on('add', update);
     this.get('hoodie.store').on('update', update);
     this.get('hoodie.store').on('remove', remove);
+    this.get('hoodie.account').on('signout', reset);
   }
 });
