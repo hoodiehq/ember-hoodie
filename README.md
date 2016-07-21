@@ -1,7 +1,6 @@
-# Ember-hoodie
+# ember-hoodie
 
-This addon lets you use the awesome [hoodie](http://hood.ie) project
-seamlessly with Ember.js
+> Use hoodie seamlessly with Ember.js
 
 ## Installing
 
