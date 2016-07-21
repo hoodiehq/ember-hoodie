@@ -2,6 +2,10 @@
 
 > Use hoodie seamlessly with Ember.js
 
+[![Build Status](https://travis-ci.org/hoodiehq/ember-hoodie.svg?branch=master)](https://travis-ci.org/hoodiehq/ember-hoodie)
+[![Dependency Status](https://david-dm.org/hoodiehq/ember-hoodie.svg)](https://david-dm.org/hoodiehq/ember-hoodie)
+[![devDependency Status](https://david-dm.org/hoodiehq/ember-hoodie/dev-status.svg)](https://david-dm.org/hoodiehq/ember-hoodie#info=devDependencies)
+
 ## Installing
 
 * `npm install -S ember-hoodie`
