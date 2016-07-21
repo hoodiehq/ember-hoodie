@@ -39,6 +39,7 @@
     "ember-export-application-global": "^1.0.5",
     "ember-load-initializers": "^0.5.1",
     "ember-resolver": "^2.0.3",
+    "hapi": "^13.5.0",
     "loader.js": "^4.0.1",
     "semantic-release": "^6.3.0"
   },
@@ -46,11 +47,11 @@
     "ember-addon"
   ],
   "dependencies": {
-    "hoodie": "^23.2.1",
-    "http-proxy-middleware": "^0.15.2",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
-    "ember-cli-babel": "^5.1.6"
+    "ember-cli-babel": "^5.1.6",
+    "hoodie": "^23.2.1",
+    "http-proxy-middleware": "^0.15.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
