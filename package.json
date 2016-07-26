@@ -1,5 +1,6 @@
 {
   "name": "ember-hoodie",
+  "version": "0.0.0-placeholder-for-git-install",
   "description": "The default blueprint for ember-cli addons.",
   "directories": {
     "doc": "doc",
