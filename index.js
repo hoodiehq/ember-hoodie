@@ -1,36 +1,37 @@
 /* jshint node:true */
 'use strict';
 
-var Hapi = require('hapi');
-var hoodie = require('hoodie');
+
 var url = require('url');
 var path = require('path');
-var proxy = require('http-proxy-middleware');
+
 
 var mergeTrees = require('broccoli-merge-trees');
 var Funnel = require('broccoli-funnel');
 
-var hapiOptions = {
-  server: {},
-  connection: {
-    port: 4201
-  }
-};
-var hoodieOptions = {
-  paths: {
-    public: 'dist'
-  }
-};
-
 function hoodieMiddleware(config) {
-  config.app.use('/hoodie', proxy({target: 'http://localhost:' + hapiOptions.connection.port}));
+  /* jshint -W040 */
+  var appConfig = this.project.config(config.options.environment);
+  /* jshint +W040 */
 
-  var server = new Hapi.Server(hapiOptions.server);
-  server.connection(hapiOptions.connection);
+  if (!appConfig.hoodie) {
+    return;
+  }
+
+  var Hapi = require('hapi');
+  var hoodie = require('hoodie');
+  var proxy = require('http-proxy-middleware');
+
+  config.app.use('/hoodie', proxy({target: 'http://localhost:' + appConfig.hoodie.server.port}));
+
+  var server = new Hapi.Server();
+  server.connection({
+    port: appConfig.hoodie.server.port
+  });
 
   server.register({
     register: hoodie,
-    options: hoodieOptions
+    options: appConfig.hoodie.server
   }, function (error) {
     if (error) {
       throw error;
