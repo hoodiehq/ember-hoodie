@@ -42,6 +42,20 @@ import HoodieStore from 'ember-hoodie/services/store';
 export default HoodieStore;
 ```
 
+If you want `ember server` to start the Hoodie Server for you, you have to configure
+`ENV.hoodie.server`.
+
+```js
+// config/environment.js
+if (environment === 'development') {
+  ENV.hoodie = {
+    server: { // https://github.com/hoodiehq/hoodie#hapi-plugin
+      port: 4201
+    }
+  }
+}
+```
+
 Now, you can just use the store as you are used to! Whabam! Please help
 me fill out these docs a little better.
 
