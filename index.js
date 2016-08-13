@@ -1,38 +1,29 @@
 /* jshint node:true */
 'use strict';
 
-
 var url = require('url');
 var path = require('path');
-
 
 var mergeTrees = require('broccoli-merge-trees');
 var Funnel = require('broccoli-funnel');
 
-function hoodieMiddleware(config) {
-  /* jshint -W040 */
-  var appConfig = this.project.config(config.options.environment);
-  /* jshint +W040 */
 
-  if (!appConfig.hoodie) {
-    return;
-  }
-
+function startHoodieServer(app, hoodieConfig) {
   var Hapi = require('hapi');
   var hoodie = require('hoodie');
   var proxy = require('http-proxy-middleware');
 
-  config.app.use('/hoodie', proxy({target: 'http://localhost:' + appConfig.hoodie.server.port}));
+  app.use('/hoodie', proxy({ target: 'http://localhost:' + hoodieConfig.server.port }));
 
   var server = new Hapi.Server();
   server.connection({
-    port: appConfig.hoodie.server.port
+    port: hoodieConfig.server.port
   });
 
   server.register({
     register: hoodie,
-    options: appConfig.hoodie.server
-  }, function (error) {
+    options: hoodieConfig.server
+  }, function(error) {
     if (error) {
       throw error;
     }
@@ -47,6 +38,7 @@ function hoodieMiddleware(config) {
     });
   });
 }
+
 
 module.exports = {
   name: 'ember-hoodie',
@@ -73,5 +65,20 @@ module.exports = {
     app.import('vendor/hoodie.js');
   },
 
-  serverMiddleware: hoodieMiddleware
+  testemMiddleware: function(app) { 
+    var appConfig = this.project.config('test');
+
+    if (appConfig.hoodie) {
+      startHoodieServer(app, appConfig.hoodie)
+    }
+  },
+  serverMiddleware: function(config) {
+    /* jshint -W040 */
+    var appConfig = this.project.config(config.options.environment);
+    /* jshint +W040 */
+
+    if (appConfig.hoodie) {
+      startHoodieServer(config.app, appConfig.hoodie);
+    }
+  }
 };

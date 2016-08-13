@@ -7,7 +7,10 @@ module.exports = {
     "PhantomJS"
   ],
   "launch_in_dev": [
-    "PhantomJS",
-    "Chrome"
-  ]
+  ],
+  "proxies": {
+    "/hoodie": {
+      "target": "http://localhost:4201"
+    }
+  }
 };
