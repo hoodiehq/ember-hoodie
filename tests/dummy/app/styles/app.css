@@ -1,0 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #eee;
+}
+
+body {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  background: #fff;
+}
+
+input {
+  display: block;
+  font: inherit;
+  padding: .5em .7em;
+  margin: 1em 0;
+  width: 100%;
+}
+
+button {
+  background: #ddd;
+  border: 0;
+  font: inherit;
+  padding: .5em .7em;
+}

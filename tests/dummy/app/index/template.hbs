@@ -1,0 +1,40 @@
+{{#if account.isSignedIn}}
+<p>
+  <span class="greeting">Username: {{account.username}}</span>
+  <button {{action "signOut" on="click"}}>sign out</button>
+</p>
+{{else}}
+
+{{#if showSignIn}}
+<form {{action "signIn" username password on="submit"}}>
+  {{input value=username placeholder="username"}}
+  {{input type="password" value=password placeholder="password"}}
+  <button type="submit">sign in</button>
+  <a href="#" {{action "toggleForm"}}>sign up</a>
+</form>
+{{else}}
+<form {{action "signUp" username password on="submit"}}>
+  {{input value=username placeholder="username"}}
+  {{input type="password" value=password placeholder="password"}}
+  <button type="submit">sign up</button>
+  <a href="#" {{action "toggleForm"}}>sign in</a>
+</form>
+{{/if}}
+
+{{/if}}
+
+<hr>
+
+<div class="add">
+  <form {{action "add" title on="submit"}}>
+    <h3>Add new Todo</h3>
+    {{input value=title placeholder="remember the milk!"}}
+    <button type="submit">add</button>
+  </form>
+</div>
+
+<ul>
+{{#each model as |todo|}}
+  <li>{{todo.title}}</li>
+{{/each}}
+</ul>
