@@ -49,6 +49,7 @@ If you want `ember server` to start the Hoodie Server for you, you have to confi
 // config/environment.js
 if (environment === 'development') {
   ENV.hoodie = {
+    client: {},
     server: { // https://github.com/hoodiehq/hoodie#hapi-plugin
       port: 4201
     }

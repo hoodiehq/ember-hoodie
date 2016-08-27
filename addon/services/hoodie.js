@@ -9,7 +9,8 @@ const {
 export default Service.extend({
   init() {
     this._super(...arguments);
-    let hoodie = new Hoodie();
+    let config = Ember.getOwner(this).application.resolveRegistration('config:environment').hoodie.client
+    let hoodie = new Hoodie(config);
     set(this, 'hoodie', hoodie);
     // for debug only
     window.hoodie = hoodie;
