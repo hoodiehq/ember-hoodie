@@ -52,7 +52,7 @@
     "broccoli-merge-trees": "^1.1.1",
     "ember-cli-babel": "^5.1.6",
     "hapi": "^13.5.0",
-    "hoodie": "^23.2.1",
+    "hoodie": "^23.3.3",
     "http-proxy-middleware": "^0.15.2"
   },
   "ember-addon": {
