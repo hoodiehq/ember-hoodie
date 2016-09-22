@@ -21,7 +21,7 @@ export default DS.Adapter.extend({
 
   createRecord(store, type, snapshot) {
     var props = this.serialize(snapshot);
-    if (snapshot.id) { props.id = snapshot.id }
+    if (snapshot.id) { props.id = snapshot.id; }
     return this._next(() => {
       return this._storeForType(type).add(props);
     });
