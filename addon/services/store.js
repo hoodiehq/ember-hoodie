@@ -34,7 +34,7 @@ export default DS.Store.extend({
 
     let remove = (obj) => {
       let record = this.peekRecord(obj.type, obj.id);
-      if (!get(record, 'isDeleted')) {
+      if (record && !get(record, 'isDeleted')) {
         record.unloadRecord();
       }
     };
