@@ -48,7 +48,7 @@
     "ember-addon"
   ],
   "dependencies": {
-    "@hoodie/client": "^6.0.0",
+    "@hoodie/client": "^7.0.0",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "ember-cli-babel": "^5.1.6",
