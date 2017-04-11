@@ -2,7 +2,13 @@ import DS from 'ember-data';
 import Ember from 'ember';
 
 const {
-  inject: { service }
+  get,
+  inject: {
+    service
+  },
+  String: {
+    camelize
+  }
 } = Ember;
 
 export default DS.Adapter.extend({
@@ -15,22 +21,25 @@ export default DS.Adapter.extend({
 
   findRecord(store, type, id) {
     return this._next(() => {
-      return this._storeForType(type).find(id);
+      return this._hoodieStore().find(id);
     });
   },
 
   createRecord(store, type, snapshot) {
     var props = this.serialize(snapshot);
-    if (snapshot.id) { props.id = snapshot.id; }
+    if (snapshot.id) {
+      props.id = snapshot.id;
+    }
+    props.type = camelize(type.modelName);
     return this._next(() => {
-      return this._storeForType(type).add(props);
+      return this._hoodieStore().add(props);
     });
   },
 
   updateRecord(store, type, snapshot) {
     var props = this.serialize(snapshot);
     return this._next(() => {
-      return this._storeForType(type).update(snapshot.id, props);
+      return this._hoodieStore().update(snapshot.id, props);
     });
   },
 
@@ -40,13 +49,16 @@ export default DS.Adapter.extend({
   // https://github.com/hoodiehq/hoodie-store-client/issues/95
   deleteRecord(store, type, snapshot) {
     return this._next(() => {
-      return this.get('hoodie.store').remove(snapshot.id);
+      return this._hoodieStore().remove(snapshot.id);
     });
   },
 
   findAll(store, type) {
     return this._next(() => {
-      return this._storeForType(type).findAll();
+      let isOfType = function(m){
+        return m.type === type.modelName;
+      };
+      return this._hoodieStore().findAll(isOfType);
     });
   },
 
@@ -54,8 +66,8 @@ export default DS.Adapter.extend({
     throw new Error('not implemented');
   },
 
-  _storeForType(type) {
-    return this.get('hoodie.store')(type.modelName);
+  _hoodieStore() {
+    return get(this, 'hoodie.store');
   },
 
   // This is used to synchronize and single-file hoodie operations.

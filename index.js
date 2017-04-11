@@ -19,19 +19,31 @@ function hoodieMiddleware(config) {
   }
 
   var Hapi = require('hapi');
-  var hoodie = require('hoodie');
+  var hoodie = require('hoodie').register;
   var proxy = require('http-proxy-middleware');
+  var PouchDB = require('pouchdb');
 
   config.app.use('/hoodie', proxy({target: 'http://localhost:' + appConfig.hoodie.server.port}));
 
   var server = new Hapi.Server();
   server.connection({
+    host: 'localhost',
     port: appConfig.hoodie.server.port
   });
 
   server.register({
     register: hoodie,
-    options: appConfig.hoodie.server
+    options: {
+      PouchDB: PouchDB,
+      // paths: {
+      //   data: '.hoodie'
+      // },
+      adminPassword: appConfig.hoodie.server.adminPassword,
+      client: {
+        url: "http://localhost:"+ appConfig.hoodie.server.port
+      }
+    }
+    // options: appConfig.hoodie.server
   }, function (error) {
     if (error) {
       throw error;
@@ -60,8 +72,13 @@ module.exports = {
       srcDir: 'dist',
       destDir: '/'
     });
+    var pouchdbPackage = path.join(path.dirname(require.resolve('pouchdb')), '..', 'dist');
+    var pouchdbTree = new Funnel(pouchdbPackage, {
+      files: ['pouchdb.js'],
+      destDir: 'pouchdb'
+    });
     if (tree) {
-      return mergeTrees([tree, hoodieTree]);
+      return mergeTrees([tree, hoodieTree, pouchdbTree], {overwrite: true});
     } else {
       return hoodieTree;
     }
@@ -71,6 +88,7 @@ module.exports = {
     this._super.apply(this, arguments);
 
     app.import('vendor/hoodie.js');
+    app.import('vendor/pouchdb/pouchdb.js');
   },
 
   serverMiddleware: hoodieMiddleware
