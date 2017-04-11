@@ -34,6 +34,18 @@ export default Controller.extend({
   }
 });
 ```
+and in your application serializer
+```js
+// app/serializers/application.js
+import DS from 'ember-data';
+
+export default DS.JSONSerializer.extend({
+  shouldSerializeHasMany: function() {
+    return true;
+  },
+  primaryKey: '_id' //hoodie generates _id
+});
+```
 
 ```js
 // app/services/store.js
@@ -49,8 +61,11 @@ If you want `ember server` to start the Hoodie Server for you, you have to confi
 // config/environment.js
 if (environment === 'development') {
   ENV.hoodie = {
-    client: {},
+    client: {
+      url: 'http://localhost:4201'
+    },
     server: { // https://github.com/hoodiehq/hoodie#hapi-plugin
+      adminPassword: 'secret',
       port: 4201
     }
   }
