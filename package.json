@@ -48,13 +48,14 @@
     "ember-addon"
   ],
   "dependencies": {
-    "@hoodie/client": "^8.0.0",
+    "@hoodie/client": "^10.0.2",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
     "ember-cli-babel": "^5.1.6",
     "hapi": "^16.0.0",
-    "hoodie": "^24.0.0",
-    "http-proxy-middleware": "^0.17.1"
+    "hoodie": "^28.1.0",
+    "http-proxy-middleware": "^0.17.1",
+    "pouchdb": "6.1.2"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
