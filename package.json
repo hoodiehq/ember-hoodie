@@ -55,7 +55,7 @@
     "hapi": "^16.0.0",
     "hoodie": "^28.1.0",
     "http-proxy-middleware": "^0.17.1",
-    "pouchdb": "6.1.2"
+    "pouchdb": "6.2.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
