@@ -80,7 +80,7 @@ module.exports = {
     if (tree) {
       return mergeTrees([tree, hoodieTree, pouchdbTree], {overwrite: true});
     } else {
-      return hoodieTree;
+      return mergeTrees([hoodieTree, pouchdbTree], {overwrite: true});
     }
   },
 
