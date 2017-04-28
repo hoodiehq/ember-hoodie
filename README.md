@@ -65,7 +65,7 @@ var PouchDB = require('pouchdb');
 if (environment === 'development') {
   ENV.hoodie = {
     client: {
-      url: 'http://localhost:4201'
+      url: 'http://localhost:4200'
     },
     server: {
       PouchDB: PouchDB,
