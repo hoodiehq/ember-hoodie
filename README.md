@@ -67,13 +67,35 @@ if (environment === 'development') {
     client: {
       url: 'http://localhost:4201'
     },
-    server: { // https://github.com/hoodiehq/hoodie#hapi-plugin
+    server: {
       PouchDB: PouchDB,
-      adminPassword: 'secret',
-      port: 4201
+      paths: {
+        public: 'dist'
+      }
     }
   }
 }
+```
+
+The `ENV.hoodie.server` property is the exact hoodie-server config that will be passed as hapi's `register` [options](https://github.com/hoodiehq/hoodie-server#example). So you can pass whatever options you need here. For example, to make hoodie act as a proxy to a couchdb, you can use:
+
+```js
+  ENV.hoodie = {
+    client: {
+      url: 'http://localhost:4200'
+    },
+    server: {
+      PouchDB: PouchDB.defaults({
+        prefix: 'http://localhost:5984',
+        auth: {
+          username: 'admin',
+          password: 'admin'
+        }
+      }),
+      port: 4201,
+      paths: {},
+    }
+  };
 ```
 
 Now, you can just use the store as you are used to! Whabam! Please help
