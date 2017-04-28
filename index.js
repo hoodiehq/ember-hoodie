@@ -33,17 +33,7 @@ function hoodieMiddleware(config) {
 
   server.register({
     register: hoodie,
-    options: {
-      PouchDB: PouchDB,
-      // paths: {
-      //   data: '.hoodie'
-      // },
-      adminPassword: appConfig.hoodie.server.adminPassword,
-      client: {
-        url: "http://localhost:"+ appConfig.hoodie.server.port
-      }
-    }
-    // options: appConfig.hoodie.server
+    options: appConfig.hoodie.server
   }, function (error) {
     if (error) {
       throw error;

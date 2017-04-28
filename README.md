@@ -59,12 +59,16 @@ If you want `ember server` to start the Hoodie Server for you, you have to confi
 
 ```js
 // config/environment.js
+
+var PouchDB = require('pouchdb');
+
 if (environment === 'development') {
   ENV.hoodie = {
     client: {
       url: 'http://localhost:4201'
     },
     server: { // https://github.com/hoodiehq/hoodie#hapi-plugin
+      PouchDB: PouchDB,
       adminPassword: 'secret',
       port: 4201
     }
