@@ -26,10 +26,7 @@ export default DS.Adapter.extend({
   },
 
   createRecord(store, type, snapshot) {
-    var props = this.serialize(snapshot);
-    if (snapshot.id) {
-      props.id = snapshot.id;
-    }
+    var props = this.serialize(snapshot, {includeId:true});
     props.type = camelize(type.modelName);
     return this._next(() => {
       return this._hoodieStore().add(props);
