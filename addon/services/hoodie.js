@@ -9,7 +9,7 @@ const {
 export default Service.extend({
   init() {
     this._super(...arguments);
-    const appConfig = Ember.getOwner(this).application.resolveRegistration('config:environment');
+    const appConfig = Ember.getOwner(this).resolveRegistration('config:environment');
     const hoodie = new Hoodie({
       url : appConfig.hoodie.client.url,
       PouchDB : PouchDB
