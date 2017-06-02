@@ -51,7 +51,7 @@
     "@hoodie/client": "^10.0.2",
     "broccoli-funnel": "^1.0.1",
     "broccoli-merge-trees": "^1.1.1",
-    "ember-cli-babel": "^5.1.6",
+    "ember-cli-babel": "^6.4.1",
     "hapi": "^16.0.0",
     "hoodie": "^28.1.0",
     "http-proxy-middleware": "^0.17.1",
