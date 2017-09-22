@@ -42,7 +42,7 @@
     "ember-load-initializers": "^0.6.0",
     "ember-resolver": "^2.0.3",
     "loader.js": "^4.0.1",
-    "semantic-release": "^7.0.1"
+    "semantic-release": "^8.0.3"
   },
   "keywords": [
     "ember-addon"
