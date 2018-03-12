@@ -54,7 +54,7 @@
     "ember-cli-babel": "^5.1.6",
     "hapi": "^16.0.0",
     "hoodie": "^28.1.0",
-    "http-proxy-middleware": "^0.17.1",
+    "http-proxy-middleware": "^0.18.0",
     "pouchdb": "6.1.2"
   },
   "ember-addon": {
